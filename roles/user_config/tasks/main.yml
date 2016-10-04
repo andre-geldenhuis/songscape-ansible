@@ -1,0 +1,33 @@
+---
+-
+  #make sure we can do passwordless sudoers
+  #*************************************************
+  - name: Make sure we have a 'wheel' group
+    group:
+      name: wheel
+      state: present
+
+  - name: Allow 'wheel' group to have passwordless sudo
+    lineinfile:
+      dest: /etc/sudoers
+      state: present
+      regexp: '^%wheel'
+      line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+
+  - name: Add sudoers users to wheel group
+    user: name=deployer groups=wheel append=yes state=present createhome=yes
+  #********************************************************
+  #users and groups
+  - name: Add ed group
+    group: name=ed state=present
+  - name: create ed user
+    user: name=ed shell=/bin/bash groups=ed,sudo,wheel
+  - name: Create Admin user
+    user: name=admin shell=/bin/bash groups=sudo,wheel
+
+  #keys - ed user key
+    #create key with ssh-keygen -t rsa -b 4096
+  - name: Add ssh key to ed user
+    authorized_key: user=ed key="{{ lookup('file', 'keys/ed.pub') }}"
+  - name: Add ssh key to admin user
+    authorized_key: user=admin key="{{ lookup('file', 'keys/admin.pub') }}"
