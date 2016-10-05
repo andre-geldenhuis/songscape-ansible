@@ -1,0 +1,15 @@
+---
+
+songscape_repo        : https://github.com/dragonfly-science/songscape
+songscape_install_dir : /opt/songscape
+
+wavy_repo             : https://bitbucket.org/nblouveton/wavy
+wavy_install_dir      : /opt/wavy
+
+db_name               : halosounds
+db_user               : halo
+db_password           : "{{ lookup('password', 'secret_key_db length=35') }}"
+
+app_secret_key        : "{{ lookup('password', 'secret_key_app length=35') }}"
+app_allowed_hosts     : ".dragonfly.co.nz"
+browserid_audiences   : https://songscape-staging.dragonfly.co.nz

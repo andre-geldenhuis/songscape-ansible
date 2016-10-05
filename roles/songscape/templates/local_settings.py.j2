@@ -1,0 +1,32 @@
+# Be careful with this file, as it is used as a template for the debian
+# package setup. Feel free to copy it to local_settings.py and change/fill in
+# as you like though.
+
+DATABASES = {
+    'default': {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": '{{db_name}}',
+        "USER": '{{db_user}}',
+        "PORT": '',
+        "HOST": 'localhost',
+        "PASSWORD": '{{db_password}}',
+    }
+}
+# Change this to True if you are doing local development
+DEBUG = False
+
+SITE_URL = ''
+MEDIA_ROOT = '/kiwi'
+
+EMAIL_HOST = ''
+SERVER_EMAIL = ''
+
+SESSION_COOKIE_SECURE = True
+ALLOWED_HOSTS = ['{{app_allowed_hosts}}']
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
+BROWSERID_AUDIENCES = ['{{browserid_audiences}}',]
+
+# generate this per server, and add to debconf
+# python -c 'import random; print "".join([random.choice("abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)") for i in range(50)])'
+# Secret key set by ansible templating
+SECRET_KEY = '{{app_secret_key}}'

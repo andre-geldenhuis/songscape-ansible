@@ -1,0 +1,53 @@
+---
+-
+  - name: Update package cache
+    apt:
+      update_cache: yes
+  - name: Install prerequisites
+    apt: name={{item}} state=installed
+    with_items:
+      - git
+      - python-pip
+      - postgresql
+      - postgresql-contrib
+      - python-psycopg2
+      - libpq-dev
+      - python-numpy
+      - python-matplotlib
+      - python-pygame #apparently needed for wavy package
+      - mercurial #needed to clone bitbucket repository for wavy module
+
+  - name: Install python dependencies from pip
+    pip: name={{item}}
+    with_items:
+      - django
+      - south
+      - django_nose
+
+  - name: Clone repository
+    git:
+      repo: "{{ songscape_repo }}"  #vars for this role defined in roles/songscape/vars/main.yml
+      dest: "{{ songscape_install_dir }}"
+
+  # template the local_settings.py file - it is copied from roles/songscape/templates/local_settings.py.j2
+  # The secret key is set via ansibles loopup('password') method.
+  # Changing the secret key from what is on github is really important
+  # This will create a file with the secret key called secret_key in the
+  # root of the ansible playbook if it doesn't already exist and use that.
+  # Note! if the file exists it will just use it's contents - even if empty!
+  - name: Set local_settings.py secret_key and deploy to server
+    template:
+      src: local_settings.py.j2
+      dest: "{{ songscape_install_dir }}/local_settings.py"
+
+
+  - name: Clone wavy from mercurial
+    hg:
+      repo: "{{ wavy_repo }}"
+      dest: "{{ wavy_install_dir }}"
+
+  - name: run wavy installer
+    shell: python setup.py install
+    args:
+      chdir: "{{wavy_install_dir}}"
+      creates: /usr/local/lib/python2.7/dist-packages/Wavy-1.0.egg-info
