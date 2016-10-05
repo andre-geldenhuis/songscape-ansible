@@ -1,2 +1,4 @@
 cifs_password.yml
+secret_key*
 keys/
+venv/
