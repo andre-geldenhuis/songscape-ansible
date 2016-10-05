@@ -1,0 +1,18 @@
+---
+-
+  - name: include some vars so as not to put them in version control
+    include_vars: cifs_password.yml  #create a password file with ansible vault or just plain yml with cifs_user@staff.vuw.ac.nz, cifs_password and  cifs_mountpoint (eg //resserver...) defined at roles/research_mount/vars/cifs_password.yml
+
+  - name: "install cifs"
+    apt: name=cifs-utils state=present
+
+  - name: Mount
+    mount:
+      name: /mnt/research_storage
+      src: "{{cifs_mountpoint}}"
+      opts: username={{ cifs_user }},password={{ cifs_password }},sec=ntlm,file_mode=0770,dir_mode=0770"
+      fstype: cifs
+      state: mounted
+
+  - name: Restrict permissions on fstab
+    file: path=/etc/fstab mode=0600
