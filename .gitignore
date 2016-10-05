@@ -1,4 +1,5 @@
 cifs_password.yml
 secret_key*
+*.retry
 keys/
 venv/
