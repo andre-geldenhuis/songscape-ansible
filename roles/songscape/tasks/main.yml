@@ -15,16 +15,17 @@
       - python-numpy
       - python-matplotlib
       - python-pygame #apparently needed for wavy package
+      - python-pil # should install the PILLOW fork
       - mercurial #needed to clone bitbucket repository for wavy module
 
-  - name: Install python dependencies from pip
-    pip: name=django version=1.9
-
-  - name: Install python dependencies from pip
-    pip: name={{item}}
-    with_items:
-      - south
-      - django_nose
+  # - name: Install python dependencies from pip
+  #   pip: name=django version=1.9
+  #
+  # - name: Install python dependencies from pip
+  #   pip: name={{item}}
+  #   with_items:
+  #     - south
+  #     - django_nose
 
   - name: Clone repository
     git:
@@ -42,6 +43,9 @@
       src: local_settings.py.j2
       dest: "{{ songscape_install_dir }}/local_settings.py"
 
+  - name: Install python dependencies from pip
+    pip:
+      requirements: "{{songscape_install_dir}}/requirements.txt"
 
   - name: Clone wavy from mercurial
     hg:
@@ -79,4 +83,3 @@
       - migrate
     become: True
     become_user: songscape
-    
