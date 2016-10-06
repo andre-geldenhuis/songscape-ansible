@@ -1,4 +1,4 @@
-# Songscape deployent via Ansible WIP
+# Songscape deployment via Ansible WIP
 
 ## Setup ansible
 
