@@ -16,7 +16,16 @@
 
   - name: Add sudoers users to wheel group
     user: name=deployer groups=wheel append=yes state=present createhome=yes
+
+  #users and groups
+  - name: Add songscape group
+    group: name=songscape state=present
+
+  - name: create non-interactive user for songscape
+    user: name=songscape shell=/bin/nologin groups=songscape
+
   #********************************************************
+
   #users and groups
   - name: Add user group
     group: name={{item}} state=present
