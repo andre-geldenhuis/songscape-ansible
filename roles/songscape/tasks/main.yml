@@ -18,9 +18,11 @@
       - mercurial #needed to clone bitbucket repository for wavy module
 
   - name: Install python dependencies from pip
+    pip: name=django version=1.9
+
+  - name: Install python dependencies from pip
     pip: name={{item}}
     with_items:
-      - django
       - south
       - django_nose
 
@@ -51,3 +53,19 @@
     args:
       chdir: "{{wavy_install_dir}}"
       creates: /usr/local/lib/python2.7/dist-packages/Wavy-1.0.egg-info
+
+  - name: Create database
+    postgresql_db: name={{db_name}}
+    become: True
+    become_user: postgres
+
+  - name: Setup postgres database user
+    postgresql_user:
+      name: "{{item}}"
+      db: "{{db_name}}"
+      password: "{{ db_password }}"
+      role_attr_flags: CREATEDB,NOSUPERUSER
+    become: True
+    become_user: postgres
+    with_items:
+      - songscape
