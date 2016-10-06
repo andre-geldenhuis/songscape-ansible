@@ -69,3 +69,14 @@
     become_user: postgres
     with_items:
       - songscape
+
+  - name: Run django database makemigrations in case of db changes - TODO this might be unwise to run all the time
+    shell: python manage.py {{item}}
+    args:
+      chdir: /opt/songscape
+    with_items:
+      - makemigrations
+      - migrate
+    become: True
+    become_user: songscape
+    
