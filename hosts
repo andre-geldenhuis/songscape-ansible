@@ -2,4 +2,4 @@
 vuwunicohalo001.vuw.ac.nz ansible_ssh_private_key_file=keys/andre
 
 [dev]
-52.62.53.204 ansible_ssh_private_key_file=keys/andre
+54.66.160.212 ansible_ssh_private_key_file=keys/andre
