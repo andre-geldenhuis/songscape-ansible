@@ -54,7 +54,7 @@ ansible-playbook -u andre -i hosts site.yml --limit dev
 ## Install songscape
 This is partially done on the dev and prod servers.
 
-Make sure you have copied your ssh key to keys/ (or use your normal process).  Run chmod 600 on the key (you only need to do this once).
+Make sure you have copied your ssh key to keys/ (or use your normal process).  Run chmod 600 on the key (you only need to do this once).  You will also need to change the ssh key in hosts to match your ssh key
 
 In sites.yml make sure that all the roles except songscape is commented out.  There are better ways to do this, we can seperate out the plays, but this will do for now.
 
