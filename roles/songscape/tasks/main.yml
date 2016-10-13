@@ -31,6 +31,7 @@
     git:
       repo: "{{ songscape_repo }}"  #vars for this role defined in roles/songscape/vars/main.yml
       dest: "{{ songscape_install_dir }}"
+      force: yes
 
   # template the local_settings.py file - it is copied from roles/songscape/templates/local_settings.py.j2
   # The secret key is set via ansibles loopup('password') method.
@@ -42,6 +43,12 @@
     template:
       src: local_settings.py.j2
       dest: "{{ songscape_install_dir }}/local_settings.py"
+
+  - name: remove wavy dependency from requirements.txt (it will be installed later) it seems to cause problems with some versions of pip
+    lineinfile:
+      dest: "{{ songscape_install_dir }}/requirements.txt"
+      line: "git+https://github.com/dragonfly-science/numpy-wavy.git"
+      state: absent
 
   - name: Install python dependencies from pip
     pip:

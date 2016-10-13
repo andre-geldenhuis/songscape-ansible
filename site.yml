@@ -4,6 +4,6 @@
 - hosts: all
   become: yes
   roles:
-    - user_config
+    # - user_config
     # - research_mount
-    # - songscape
+    - songscape
