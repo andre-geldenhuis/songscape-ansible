@@ -73,7 +73,7 @@ Make sure you have copied your ssh key to keys/ (or use your normal process).  R
 
 From your songscape-ansible directory run (replace my username with yours)
 ```bash
-ssh -i keys/andre andre@52.62.53.204 #to access the dev server
+ssh -i keys/andre andre@54.66.160.212 #to access the dev server
 ssh -i keys/andre andre@vuwunicohalo001.vuw.ac.nz # to access the prod server (you will need to VPN to the uni network first)
 ```
 
