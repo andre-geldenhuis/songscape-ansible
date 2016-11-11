@@ -1,6 +1,6 @@
 ---
 
-songscape_repo        : https://github.com/dragonfly-science/songscape
+songscape_repo        : https://github.com/vykanton/songscape
 songscape_install_dir : /opt/songscape
 
 wavy_repo             : https://bitbucket.org/nblouveton/wavy
