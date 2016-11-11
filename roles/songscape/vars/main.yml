@@ -3,7 +3,7 @@
 songscape_repo        : https://github.com/vykanton/songscape
 songscape_install_dir : /opt/songscape
 
-wavy_repo             : https://bitbucket.org/nblouveton/wavy
+wavy_repo             : https://github.com/andre-geldenhuis/wavy
 wavy_install_dir      : /opt/wavy
 
 db_name               : halosounds
