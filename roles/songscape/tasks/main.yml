@@ -32,7 +32,7 @@
       repo: "{{ songscape_repo }}"  #vars for this role defined in roles/songscape/vars/main.yml
       dest: "{{ songscape_install_dir }}"
       force: yes
-      version: master #jasonhideki-master
+      version: vuw #jasonhideki-master
 
   # template the local_settings.py file - it is copied from roles/songscape/templates/local_settings.py.j2
   # The secret key is set via ansibles loopup('password') method.
