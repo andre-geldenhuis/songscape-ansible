@@ -77,7 +77,31 @@ ssh -i keys/andre andre@54.66.160.212 #to access the dev server
 ssh -i keys/andre andre@vuwunicohalo001.vuw.ac.nz # to access the prod server (you will need to VPN to the uni network first)
 ```
 
+# Installing locally inside a virtualbox VM for development.
+* Install Atom -> download thee .deb file and install it
+* Clone this repo somewhere convenient
+* install the lastest version of ansible inside a python virtualenv
+  * ```bash
+  virtualenv venv  # do this in the directory you want to run ansible from, it doesn't really matter Where
+  source venv/bin/activate #activate virtual environment
+  pip install ansible
+  sudo adduser songscape # this is usually handled by ansible but for local dev in a virtualbox we will do this by hand for now
 
-## Where we are at so far.
- The django app doesn't run - I think this might be because it is expecting an older version
- I need to write the stuff to setup the database, ie create the first table (unless django can do this for us?  Flask with sqalchemy certainly can)
+  * Run the ansible script against local machine (the virtualbox VM)
+  ansible-playbook -u victor -K -i hosts site.yml --limit local
+  ```
+
+  * Deactivate virtual environment ```deactivate```
+  * Change directory to the songscape install location /opt/songscape.
+  * git status should indicate you are on the vuw branch
+  * copy the recordings to /opt/test_data
+
+## Workflow
+
+* always git pull first - make sure you are up to date
+* make changes
+  * test that they work.
+* git pull again - in case someone else has made changes to the same file - try not to do this as you'll need to resolve conflicts
+* git add changes
+* git commit -m "Meaningful message"
+* git push origin vuw
