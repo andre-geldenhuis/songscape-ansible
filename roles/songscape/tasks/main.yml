@@ -90,3 +90,9 @@
       - migrate
     become: True
     become_user: songscape
+
+  - name: Create Directory intermediate data
+    file:
+      path: "{{ intermediate_data_dir }}"
+      state: directory
+      mode: 0755
