@@ -1,0 +1,13 @@
+---
+-
+  - name: Create Directory for test data
+    file:
+      path: "{{ test_data_dir }}"
+      state: directory
+      mode: 0755
+
+  - name: Copy some test data to the remote dev server.
+    copy:
+      src: "{{ local_data_dir }}/{{item}}"
+      dest: "{{ test_data_dir }}/{{item}}"
+    with_items: "{{test_data}}"
