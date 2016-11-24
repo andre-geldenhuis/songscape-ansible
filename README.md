@@ -81,17 +81,18 @@ ssh -i keys/andre andre@vuwunicohalo001.vuw.ac.nz # to access the prod server (y
 * Install Atom -> download thee .deb file and install it
 * Clone this repo somewhere convenient
 * install the lastest version of ansible inside a python virtualenv
-  * ```bash
-  virtualenv venv  # do this in the directory you want to run ansible from, it doesn't really matter Where
-  source venv/bin/activate #activate virtual environment
-  pip install ansible
-  sudo adduser songscape # this is usually handled by ansible but for local dev in a virtualbox we will do this by hand for now
-  ```
+
+```bash
+virtualenv venv  # do this in the directory you want to run ansible from, it doesn't really matter Where
+source venv/bin/activate #activate virtual environment
+pip install ansible
+sudo adduser songscape # this is usually handled by ansible but for local dev in a virtualbox we will do this by hand for now
+```
 
   * Run the ansible script against local machine (the virtualbox VM)
-  ```bash
-  ansible-playbook -u victor -K -i hosts site.yml --limit local
-  ```
+```bash
+ansible-playbook -u victor -K -i hosts site.yml --limit local
+```
 
   * Deactivate virtual environment ```deactivate```
   * Change directory to the songscape install location /opt/songscape.
