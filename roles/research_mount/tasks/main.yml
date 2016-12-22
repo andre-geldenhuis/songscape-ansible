@@ -14,5 +14,7 @@
       fstype: cifs
       state: mounted
 
+  # - name: Mount Research storage location for snippets!
+
   - name: Restrict permissions on fstab
     file: path=/etc/fstab mode=0600

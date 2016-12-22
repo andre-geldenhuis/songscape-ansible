@@ -97,3 +97,9 @@
       path: "{{ intermediate_data_dir }}"
       state: directory
       mode: 0755
+
+  - name: Create snippets_data_dir
+    file:
+      path: "{{ snippets_data_dir }}"
+      state: directory
+      mode: 0755
