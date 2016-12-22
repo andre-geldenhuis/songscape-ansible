@@ -54,7 +54,7 @@
     pip:
       requirements: "{{songscape_install_dir}}/requirements.txt"
 
-  - name: Clone wavy from mercurial
+  - name: Clone wavy from dragonfly git
     git:
       repo: "{{ wavy_repo }}"
       dest: "{{ wavy_install_dir }}"

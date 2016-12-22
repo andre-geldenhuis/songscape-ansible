@@ -4,7 +4,7 @@ songscape_repo        : https://github.com/vykanton/songscape
 songscape_install_dir : /opt/songscape
 intermediate_data_dir : /kiwi
 
-wavy_repo             : https://github.com/andre-geldenhuis/wavy
+wavy_repo             : https://github.com/dragonfly-science/numpy-wavy
 wavy_install_dir      : /opt/wavy
 
 db_name               : halosounds
