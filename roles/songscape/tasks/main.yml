@@ -89,6 +89,11 @@
       - makemigrations
       - migrate
       - migrate --run-syncdb
+      - initial
+      - load_vuw_recordings
+      - extract_snippets_vuw
+      # - create superuser
+      
     become: True
     become_user: songscape
 
