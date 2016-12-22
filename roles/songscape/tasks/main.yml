@@ -80,23 +80,7 @@
     become_user: postgres
     with_items:
       - songscape
-
-  - name: Run django database makemigrations in case of db changes - TODO this might be unwise to run all the time
-    shell: python manage.py {{item}}
-    args:
-      chdir: /opt/songscape
-    with_items:
-      - makemigrations
-      - migrate
-      - migrate --run-syncdb
-      - initial
-      - load_vuw_recordings
-      - extract_snippets_vuw
-      # - create superuser
       
-    become: True
-    become_user: songscape
-
   - name: Create Directory intermediate data
     file:
       path: "{{ intermediate_data_dir }}"
@@ -108,3 +92,24 @@
       path: "{{ snippets_data_dir }}"
       state: directory
       mode: 0755
+
+  - name: Run django database makemigrations in case of db changes - TODO this might be unwise to run all the time
+    shell: python manage.py {{item}}
+    args:
+      chdir: /opt/songscape
+    with_items:
+      - makemigrations
+      - migrate
+      - migrate --run-syncdb
+      - initial_vuw
+      - "load_vuw_recordings '{{ test_data_dir }}'"
+      - extract_snippets_vuw
+      - score_snippets
+      - select_snippets_for_analysis_vuw
+      - get_files_for_analysis_set_vuw
+      - sonograms
+      - soundfiles
+      # - create superuser
+
+    become: True
+    become_user: songscape
