@@ -80,7 +80,7 @@
     become_user: postgres
     with_items:
       - songscape
-      
+
   - name: Create Directory intermediate data
     file:
       path: "{{ intermediate_data_dir }}"
@@ -103,12 +103,10 @@
       - migrate --run-syncdb
       - initial_vuw
       - "load_vuw_recordings '{{ test_data_dir }}'"
-      - extract_snippets_vuw
-      - score_snippets
+      - extract_snippets_vuw_morning
+      - score_snippets_vuw
       - select_snippets_for_analysis_vuw
       - get_files_for_analysis_set_vuw
-      - sonograms
-      - soundfiles
       # - create superuser
 
     become: True
