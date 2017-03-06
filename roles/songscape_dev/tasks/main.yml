@@ -2,7 +2,13 @@
 -
   - name: Create Directory for test data
     file:
-      path: "{{ test_data_dir }}"
+      path: "{{test_data_dir}}"
+      state: directory
+      mode: 0755
+
+  - name: Create Directory for test_sample_output
+    file:
+      path: "{{test_sample_output}}"
       state: directory
       mode: 0755
 

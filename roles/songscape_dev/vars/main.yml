@@ -1,7 +1,11 @@
 ---
 
 test_data_dir       : /opt/test_data
-local_data_dir      : "/mnt/halo_project/Audio/Halo/Time Known"
+test_sample_output  : /opt/songscape/sample_calls
+dev_directories     :
+  - "{{ test_data_dir }}"
+  - "{{ test_sample_output }}"
+local_data_dir      : "test-data/"
 test_data:
   - 0110150758000001016105.wav
   - 0110150758000006016039.wav

@@ -1,6 +1,6 @@
 ---
 
-songscape_repo        : https://github.com/vykanton/songscape
+songscape_repo        : https://github.com/andre-geldenhuis/songscape
 songscape_install_dir : /opt/songscape
 intermediate_data_dir : /kiwi
 snippets_data_dir     : /www/media

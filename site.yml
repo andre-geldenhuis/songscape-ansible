@@ -1,16 +1,16 @@
 #ansible-playbook --ask-pass --ask-sudo-pass -i hosts site.yml # prior to user setup then
 #ansible-playbook -u andre -i hosts site.yml --limit dev
 ---
-- hosts: dev
-  become: yes
-  roles:
-    - songscape_dev
+# - hosts: dev
+#   become: yes
+#   roles:
+#     - songscape_dev
 
 
 - hosts: dev #all
   become: yes
   roles:
-     - user_config
+    #  - user_config
      # - research_mount
      - songscape
 

@@ -24,6 +24,22 @@ your songscape-ansible directory and run
 source venv/bin/activate
 ```
 
+## Optional use vagrant rather than EC2 for dev.
+
+Setup the VM
+```
+vagrant up
+```
+
+This will run the site.yml playbook as well.
+
+Run the site.yml playbook against then VM when needed and it's up
+```
+ansible-playbook --private-key=~/.vagrant.d/insecure_private_key -u vagrant -i .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory site.yml
+```
+
+
+
 ## Setup users - you can ignore this as it should be done already
 This should be done on the dev and prod servers already. Don't worry about it unless you are running on a new server.
 

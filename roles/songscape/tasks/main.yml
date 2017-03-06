@@ -18,6 +18,7 @@
       - python-pil # should install the PILLOW fork
       - mercurial #needed to clone bitbucket repository for wavy module
 
+
   # - name: Install python dependencies from pip
   #   pip: name=django version=1.9
   #
@@ -32,6 +33,32 @@
       repo: "{{ songscape_repo }}"  #vars for this role defined in roles/songscape/vars/main.yml
       dest: "{{ songscape_install_dir }}"
       version: vuw
+      force: yes
+
+  - name: Create detectors directory /opt/songscape/detectors/hihi.pb
+    file:
+      path: "{{ songscape_install_dir }}/detectors/"
+      owner: songscape
+      group: songscape
+      state: directory
+
+  - name: Copy hihi.db neural network
+    copy:
+      src: hihi.pb
+      dest: "{{ songscape_install_dir }}/detectors/hihi.pb"
+      owner: songscape
+      group: songscape
+
+
+  - name: chown the directory to songscape
+    file:
+      path: "{{ songscape_install_dir }}"
+      state: directory
+      owner: songscape
+      group: songscape
+      recurse: yes
+
+
 
   # template the local_settings.py file - it is copied from roles/songscape/templates/local_settings.py.j2
   # The secret key is set via ansibles loopup('password') method.
@@ -87,7 +114,7 @@
       state: directory
       mode: 0755
 
-  - name: Create snippets_data_dir
+  - name: Create detector directory.
     file:
       path: "{{ snippets_data_dir }}"
       state: directory
@@ -101,7 +128,7 @@
       - makemigrations
       - migrate
       - migrate --run-syncdb
-      - initial_vuw
+      # - initial_vuw
       - "load_vuw_recordings '{{ test_data_dir }}'"
       - extract_snippets_vuw_morning
       - score_snippets_vuw
