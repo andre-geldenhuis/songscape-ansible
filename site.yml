@@ -7,7 +7,7 @@
 #     - songscape_dev
 
 
-- hosts: dev #all
+- hosts: prod
   become: yes
   roles:
     #  - user_config
