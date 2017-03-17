@@ -119,6 +119,7 @@
       path: "{{ snippets_data_dir }}"
       state: directory
       mode: 0755
+    # become: True
 
   - name: Run django database makemigrations in case of db changes - TODO this might be unwise to run all the time
     shell: python manage.py {{item}}
@@ -128,13 +129,13 @@
       - makemigrations
       - migrate
       - migrate --run-syncdb
-      # - initial_vuw
-      - "load_vuw_recordings '{{ test_data_dir }}'"
-      - extract_snippets_vuw_morning
-      - score_snippets_vuw
-      - select_snippets_for_analysis_vuw
-      - get_files_for_analysis_set_vuw
-      # - create superuser
+      - initial_vuw
+      - "load_vuw_recordings '{{ test_data_dir }}'"  #takes a while
+  #     - extract_snippets_vuw_morning
+  #     - score_snippets_vuw
+  #     - select_snippets_for_analysis_vuw
+  #     - get_files_for_analysis_set_vuw
+  #     # - create superuser
 
-    become: True
-    become_user: songscape
+    # become: True
+    # become_user: songscape
