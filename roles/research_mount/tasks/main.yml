@@ -10,7 +10,7 @@
     mount:
       name: /mnt/research_storage
       src: "{{cifs_mountpoint}}"
-      opts: username={{ cifs_user }},password={{ cifs_password }},sec=ntlm,file_mode=0770,dir_mode=0770"
+      opts: uid=songscape,username={{ cifs_user }},password={{ cifs_password }},sec=ntlm,file_mode=0770,dir_mode=0770"
       fstype: cifs
       state: mounted
 
