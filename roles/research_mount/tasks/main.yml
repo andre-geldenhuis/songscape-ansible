@@ -14,7 +14,21 @@
       fstype: cifs
       state: mounted
 
+  - name: Mount research storage 2
+    mount:
+      name: /mnt/research_storage_snippets
+      src: "{{cifs_mountpoint2}}"
+      opts: uid=songscape,username={{ cifs_user }},password={{ cifs_password }},sec=ntlm,file_mode=0770,dir_mode=0770"
+      fstype: cifs
+      state: mounted
   # - name: Mount Research storage location for snippets!
+
+  - name:  Symlink research storage 2 to www/media
+    file:
+      path: '/opt/songscape/www/media'
+      src:  '/mnt/research_storage_snippets/media'
+      state: link
+      force: yes
 
   - name: Restrict permissions on fstab
     file: path=/etc/fstab mode=0600
