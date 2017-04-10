@@ -21,11 +21,20 @@
       opts: uid=songscape,username={{ cifs_user }},password={{ cifs_password }},sec=ntlm,file_mode=0770,dir_mode=0770"
       fstype: cifs
       state: mounted
+
+
   # - name: Mount Research storage location for snippets!
+  - name:  Symlink research storage 2 to www/media
+    file:
+      path: /www/media
+      state: directory
+      owner: songscape
+      group: songscape
+      mode: 0755
 
   - name:  Symlink research storage 2 to www/media
     file:
-      path: '/opt/songscape/www/media'
+      path: '/www/media'
       src:  '/mnt/research_storage_snippets/media'
       state: link
       force: yes
