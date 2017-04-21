@@ -113,12 +113,12 @@
       path: "{{ intermediate_data_dir }}"
       state: directory
       mode: 0755
-
-  - name: Create detector directory.
-    file:
-      path: "{{ snippets_data_dir }}"
-      state: directory
-      mode: 0755
+#Currently done in research mount
+  # - name: Create detector directory.
+  #   file:
+  #     path: "{{ snippets_data_dir }}"
+  #     state: directory
+  #     mode: 0777
     # become: True
 
   - name: Run django database makemigrations in case of db changes - TODO this might be unwise to run all the time
@@ -129,7 +129,7 @@
       - makemigrations
       - migrate
       - migrate --run-syncdb
-      - initial_vuw
+      # - initial_vuw
       # - "load_vuw_recordings '{{ test_data_dir }}'"  #takes a while
   #     - extract_snippets_vuw_morning
   #     - score_snippets_vuw
