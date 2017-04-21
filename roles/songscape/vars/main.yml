@@ -5,6 +5,7 @@ songscape_install_dir : /opt/songscape
 intermediate_data_dir : /kiwi
 snippets_data_dir     : /www/media
 test_data_dir         : /opt/test_data
+real_data_dir         : "//resstococifs001.res.vuw.ac.nz/Halo_Project_01/Audio/Halo/Time_Known"
 
 wavy_repo             : https://github.com/dragonfly-science/numpy-wavy
 wavy_install_dir      : /opt/wavy
