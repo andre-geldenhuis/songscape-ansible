@@ -1,0 +1,18 @@
+---
+-
+  - name: Install prerequisites
+    apt: name={{item}} state=installed
+    with_items:
+      - nginx
+
+  - name: move ansible config
+    template:
+      src: templates/default.j2
+      dest: /etc/nginx/sites-available/default
+
+  - name: Setup the nginx user to be songscape
+    lineinfile:
+      dest: /etc/nginx/nginx.conf
+      state: present
+      regexp: '^user'
+      line: 'user songscape;'
