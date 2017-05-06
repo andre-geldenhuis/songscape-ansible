@@ -17,3 +17,8 @@ db_password           : "{{ lookup('password', 'secret_key_db length=35') }}"
 app_secret_key        : "{{ lookup('password', 'secret_key_app length=35') }}"
 app_allowed_hosts     : ".dragonfly.co.nz"
 browserid_audiences   : https://songscape-staging.dragonfly.co.nz
+
+detectors:
+  - hihi.pb
+  - kakariki.pb
+  - tieke.pb

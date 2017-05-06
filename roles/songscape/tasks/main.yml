@@ -35,19 +35,20 @@
       version: vuw
       force: yes
 
-  - name: Create detectors directory /opt/songscape/detectors/hihi.pb
+  - name: Create detectors directory /opt/songscape/detectors/
     file:
       path: "{{ songscape_install_dir }}/detectors/"
       owner: songscape
       group: songscape
       state: directory
 
-  - name: Copy hihi.db neural network
+  - name: Copy detector neural networks
     copy:
-      src: hihi.pb
-      dest: "{{ songscape_install_dir }}/detectors/hihi.pb"
+      src: "{{ item }}"
+      dest: "{{ songscape_install_dir }}/detectors/{{ item }}"
       owner: songscape
       group: songscape
+    with_items: "{{ detectors }}"
 
 
   - name: chown the directory to songscape
